@@ -1,0 +1,24 @@
+html, body .timer-panel {
+    height: 100vh;
+}
+.timer-panel {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.button-seccion {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    button {
+        height: 90px;
+        width: 225px;
+        border-radius: 10px;
+    }
+    #break-increment, #session-increment {
+        background-color: green;
+    }
+    #break-decrement, #session-decrement {
+        background-color: red;
+    }
+}

@@ -1,1 +1,26 @@
-/*# sourceMappingURL=index.css.map */
+html, body .timer-panel {
+  height: 100vh;
+}
+
+.timer-panel {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.button-seccion {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.button-seccion button {
+  height: 90px;
+  width: 225px;
+  border-radius: 10px;
+}
+.button-seccion #break-increment, .button-seccion #session-increment {
+  background-color: green;
+}
+.button-seccion #break-decrement, .button-seccion #session-decrement {
+  background-color: red;
+}/*# sourceMappingURL=index.css.map */
