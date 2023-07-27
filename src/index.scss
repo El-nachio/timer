@@ -1,15 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 html, body .timer-panel {
     height: 100vh;
+    font-family: 'Itim', cursive;
 }
 .timer-panel {
     display: flex;
     flex-flow: column;
     justify-content: center;
 }
+.timer, .running-buttons {
+    position: relative;
+    bottom: 20%;
+    left: 25%;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.running-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .button-seccion {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     button {
         height: 90px;
         width: 225px;
@@ -20,5 +36,21 @@ html, body .timer-panel {
     }
     #break-decrement, #session-decrement {
         background-color: red;
+    }
+}
+.click-label div {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    label {
+        margin-bottom: 10px;
+        margin-right: 25px;
+        color: green;
+        font-size: 25px;
+        box-shadow: 25px;
+        text-align: center;
+    }
+    #session-label, #session-length {
+        color: red
     }
 }
