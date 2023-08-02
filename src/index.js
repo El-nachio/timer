@@ -10,44 +10,84 @@ class Timer extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            breakLabel: 5,
-            sessionLabel: 25,
+            breakLabel: 5 + ':00',
+            sessionLabel: 25 + ':00',
+            isActive: true
         }
         this.handleClick = this.handleClick.bind(this);
+        this.startTimer = this.startTimer.bind(this);
     }
 
     handleClick(e) {
-        if (e.target.id == 'break-increment' && this.state.breakLabel < 60) {
-            this.setState ({
-                breakLabel: this.state.breakLabel + 1
-            })
+        if (e.target.id === 'break-increment' && this.state.breakLabel < '60:00') {
+            const [minutes, seconds] = this.state.breakLabel.split(':').map(Number);
+            const newMinutes = minutes + 1;
+            const formattedBreak = `${newMinutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+          this.setState({
+            breakLabel: formattedBreak
+          });
+        } else if (e.target.id === 'break-decrement' && this.state.breakLabel > '01:00') {
+            const [minutes, seconds] = this.state.breakLabel.split(':').map(Number);
+            const newMinutes = minutes - 1;
+            const formattedBreak = `${newMinutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+          this.setState({
+            breakLabel:formattedBreak
+          });
+        } else if (e.target.id === 'session-increment' && this.state.sessionLabel < '60:00') {
+          const [minutes, seconds] = this.state.sessionLabel.split(':').map(Number);
+          const newMinutes = minutes + 1;
+          const formattedTime = `${newMinutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+          this.setState({
+            sessionLabel: formattedTime,
+          });
+        } else if (e.target.id === 'session-decrement' && this.state.sessionLabel > '01:00') {
+          const [minutes, seconds] = this.state.sessionLabel.split(':').map(Number);
+          const newMinutes = minutes - 1;
+          const formattedTime = `${newMinutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+          this.setState({
+            sessionLabel: formattedTime,
+          });
         }
-        else if (e.target.id == 'break-decrement' && this.state.breakLabel > 0) {
-            this.setState ({
-                breakLabel: this.state.breakLabel - 1
-            })
+      }
+      
+
+    startTimer() {
+        const [minutes, seconds] = this.state.sessionLabel.split(':').map(Number);
+        if (minutes === 0 && seconds === 0) {
+            this.setState({
+                sessionLabel: breakLabel,
+                isActive: false,
+            });
+          }
+        let newMinutes = minutes;
+        let newSeconds = seconds;
+        if (seconds === 0) {
+          newMinutes -= 1;
+          newSeconds = 59;
+        } else {
+          newSeconds -= 1;
         }
-        else if (e.target.id == 'session-increment' && this.state.sessionLabel < 60) {
-            this.setState ({
-                sessionLabel: this.state.sessionLabel + 1
-            })
+        const formattedTime = `${newMinutes.toString().padStart(2, '0')}:${newSeconds.toString().padStart(2, '0')}`;
+        if (this.state.isActive) {
+            setTimeout(() => {
+              this.setState({
+                sessionLabel: formattedTime,
+              });
+              document.getElementById('time-left').innerHTML = formattedTime;
+          
+              this.startTimer(); // Llamar a la función startTimer nuevamente después de 1 segundo
+            }, 10);
         }
-        else if (e.target.id == 'session-decrement' && this.state.sessionLabel > 0) {
-            this.setState ({
-                sessionLabel: this.state.sessionLabel - 1
-            })
-        }
-            console.log('funciona!!!~', this.state.breakLabel)
-    }
+      }
     render() {
         return (
             <div className='timer-panel'>
                 <div className='timer'>
                     <div id='Timer-label'>WORK(Timer-label)</div>
-                    <div id='time-left'>this display the time</div>
+                    <div id='time-left'></div>
                 </div>
                 <div className='running-buttons'>
-                    <a id='start-stop'href='#'><i className="bi bi-play-fill"></i></a>
+                    <a id='start-stop'href='#' onClick={this.startTimer}><i className="bi bi-play-fill"></i></a>
                     <a id='reset'href='#'><i className="bi bi-stop-fill"></i></a>
                 </div>
                 <div>
