@@ -26,16 +26,17 @@ html, body .timer-panel {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    button {
-        height: 90px;
-        width: 225px;
-        border-radius: 10px;
-    }
     #break-increment, #session-increment {
         background-color: green;
     }
     #break-decrement, #session-decrement {
         background-color: red;
+    }
+    button {
+        height: 90px;
+        width: 225px;
+        border-radius: 10px;
+        margin: 5px;
     }
 }
 .click-label div {
@@ -53,4 +54,13 @@ html, body .timer-panel {
     #session-label, #session-length {
         color: red
     }
+}
+p {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px
 }

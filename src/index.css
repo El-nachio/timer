@@ -31,16 +31,17 @@ html, body .timer-panel {
   flex-flow: row wrap;
   justify-content: space-around;
 }
-.button-seccion button {
-  height: 90px;
-  width: 225px;
-  border-radius: 10px;
-}
 .button-seccion #break-increment, .button-seccion #session-increment {
   background-color: green;
 }
 .button-seccion #break-decrement, .button-seccion #session-decrement {
   background-color: red;
+}
+.button-seccion button {
+  height: 90px;
+  width: 225px;
+  border-radius: 10px;
+  margin: 5px;
 }
 
 .click-label div {
@@ -58,4 +59,14 @@ html, body .timer-panel {
 }
 .click-label div #session-label, .click-label div #session-length {
   color: red;
+}
+
+p {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
 }/*# sourceMappingURL=index.css.map */
